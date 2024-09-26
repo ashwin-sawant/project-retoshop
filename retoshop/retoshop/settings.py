@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'store',
     'consumer',
     'retailer',
-    
+    'django_plotly_dash',
 ]
 
 MIDDLEWARE = [

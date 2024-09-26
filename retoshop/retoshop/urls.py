@@ -25,3 +25,13 @@ urlpatterns = [
     path('', include('consumer.urls')), # include consumer app's urls
     path('', include('retailer.urls')), # include retailer app's urls
 ]
+
+# your_project/urls.py
+
+# from django.urls import path, include
+# from store.admin import custom_admin_site
+
+# urlpatterns = [
+#     path('admin/', custom_admin_site.urls),  # Use custom admin site
+#     path('', include('store.urls')),  # Assuming your app is called 'store'
+# ]

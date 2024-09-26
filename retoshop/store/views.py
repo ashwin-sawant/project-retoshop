@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from .models import Category
 
 def store(request):
-    return render(request, "store.html")
+    categories = Category.objects.all()
+    return render(request, "store.html",{'categories':categories})
 
 def products(request):
     return render(request, "products.html")

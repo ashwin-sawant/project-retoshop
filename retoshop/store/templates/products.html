@@ -30,7 +30,8 @@
                     <p class="card-text"><strong>Price: ${{ product.price }}</strong></p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                    <a href="{% url 'add_to_cart' product.id %}?category_id={{ product.category_id }}" class="btn btn-primary">Add to Cart</a>
+
                 </div>
             </div>
         </div>

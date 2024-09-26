@@ -14,7 +14,7 @@ def product(request):
     return render(request, "particular_product.html")
 
 # # from django.shortcuts import render, get_object_or_404, redirect
-# from .models import Product
+from .models import Product
 
 # # Product List View (Store/Home Page)
 # def store(request):
@@ -84,6 +84,12 @@ def add_to_cart(request, product_id):
     cart = request.session.get('cart', {})
     cart[str(product_id)] = cart.get(str(product_id), 0) + 1  # Increment quantity
     request.session['cart'] = cart
+
+    # Store the last category visited in the session
+    category_id = request.GET.get('category_id')
+    if category_id:
+        request.session['category_id'] = category_id
+    
     return redirect('view_cart')
 
 # View Cart
@@ -91,6 +97,7 @@ def view_cart(request):
     cart = request.session.get('cart', {})
     cart_items = []
     total_price = 0
+    category_id = request.session.get('category_id', None)  # Retrieve the last category from the session
     
     for product in PRODUCTS:
         product_id = str(product['id'])
@@ -100,7 +107,7 @@ def view_cart(request):
             cart_items.append({'product': product, 'quantity': quantity, 'total': product_total})
             total_price += product_total
 
-    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
+    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price, 'category_id': category_id})
 
 # Remove from Cart View
 def remove_from_cart(request, product_id):
